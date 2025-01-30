@@ -33,8 +33,8 @@ jobs:
       - name: Install SonarScanner
         run: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux-x64.zip
-          unzip sonar-scanner-6.2.1.4610-linux-x64.zip
-          sudo mv sonar-scanner-6.2.1.4610-linux-x64 /opt/sonar-scanner
+          unzip sonar-scanner-cli-6.2.1.4610-linux-x64.zip
+          sudo mv sonar-scanner-cli-6.2.1.4610-linux-x64 /opt/sonar-scanner
           export PATH=$PATH:/opt/sonar-scanner/bin
 
       - name: Run SonarQube Analysis
