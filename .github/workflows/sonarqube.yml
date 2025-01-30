@@ -37,7 +37,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
         run: |
           mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=mon-projet \
-            -Dsonar.organization=mon-organisation \
+            -Dsonar.projectKey=SoyMono-http \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN
