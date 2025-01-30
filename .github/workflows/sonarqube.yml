@@ -1,0 +1,53 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js (si ton projet est en Node.js par exemple)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Cache Node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install dependencies (si ton projet utilise npm ou yarn)
+        run: |
+          npm install  # ou yarn install si tu utilises Yarn
+
+      - name: Install SonarScanner
+        run: |
+          wget https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.7.0.2747/sonar-scanner-4.7.0.2747-linux.zip
+          unzip sonar-scanner-4.7.0.2747-linux.zip
+          sudo mv sonar-scanner-4.7.0.2747-linux /opt/sonar-scanner
+          export PATH=$PATH:/opt/sonar-scanner/bin
+
+      - name: Run SonarQube Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Utilise un token de SonarQube pour l'authentification
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=mon-projet \
+            -Dsonar.organization=mon-organisation \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN
