@@ -35,10 +35,10 @@ jobs:
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-6.2.1.4610-linux-x64.zip
           unzip sonar-scanner-cli-6.2.1.4610-linux-x64.zip
           # Lister le contenu du répertoire extrait pour vérifier
-          ls -R sonar-scanner-cli-6.2.1.4610-linux-x64/
-          echo "/home/runner/sonar-scanner-cli-6.2.1.4610-linux-x64/bin" >> $GITHUB_PATH
+          ls -R sonar-scanner-6.2.1.4610-linux-x64/
+          echo "/home/runner/sonar-scanner-6.2.1.4610-linux-x64/bin" >> $GITHUB_PATH
           echo $GITHUB_PATH
-          chmod +x /home/runner/sonar-scanner-cli-6.2.1.4610-linux-x64/bin/sonar-scanner
+          chmod +x /home/runner/sonar-scanner-6.2.1.4610-linux-x64/bin/sonar-scanner
           
 
       - name: Test if sonar-scanner is in PATH
