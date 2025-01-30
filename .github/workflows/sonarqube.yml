@@ -30,10 +30,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
 
-      - name: Install dependencies (si ton projet utilise npm ou yarn)
-        run: |
-          npm install  # ou yarn install si tu utilises Yarn
-
       - name: Install SonarScanner
         run: |
           wget https://github.com/SonarSource/sonar-scanner-cli/releases/download/4.7.0.2747/sonar-scanner-4.7.0.2747-linux.zip
@@ -47,7 +43,6 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=mon-projet \
-            -Dsonar.organization=mon-organisation \
+            -Dsonar.projectKey=SoyMono \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN
