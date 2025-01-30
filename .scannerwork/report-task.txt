@@ -1,0 +1,6 @@
+projectKey=SoYMono-http
+serverUrl=http://localhost:9090
+serverVersion=25.1.0.102122
+dashboardUrl=http://localhost:9090/dashboard?id=SoYMono-http
+ceTaskId=00dac9fa-66d5-442a-bae3-1f8d8f99a016
+ceTaskUrl=http://localhost:9090/api/ce/task?id=00dac9fa-66d5-442a-bae3-1f8d8f99a016
